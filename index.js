@@ -20,4 +20,6 @@ app.use(
 );
 app.use("/", user);
 
-app.listen((PORT = 5000));
+let port = 5000;
+
+app.listen((PORT = process.env.PORT || 5000));

@@ -4,6 +4,10 @@ const router = express.Router();
 
 const { User } = require("../models/addUsers");
 
+router.get("/", async (req, res) => {
+  res.send("its WoRKING.....");
+});
+
 router.post("/", async (req, res) => {
   const formData = req.body;
   console.log("FOrmdata: ", formData);
