@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 
   let img = req.files.image;
 
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ Email: req.body.email });
   if (user) {
     res.status(400).send("user already exists");
     return;
