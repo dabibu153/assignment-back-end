@@ -10,8 +10,16 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const formData = req.body;
+
   console.log("FOrmdata: ", formData);
-  let img = req.files.img;
+
+  let img = req.files.image;
+
+  const user = await User.findOne({ email: req.body.email });
+  if (user) {
+    res.status(400).send("user already exists");
+    return;
+  }
   let new_user = new User({
     FirstName: req.body.FirstName,
     LastName: req.body.LastName,
@@ -20,7 +28,7 @@ router.post("/", async (req, res) => {
     image: img,
   });
   await new_user.save();
-  res.send(new_user);
+  res.send("new user has been added");
 });
 
 module.exports = router;
